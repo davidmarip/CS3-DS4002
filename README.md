@@ -1,7 +1,7 @@
 # Airline Scorecard: Which US Airline Is Most Likely to Make You Late?
 ### A DS4002 Case Study by David Nu Nu Marip
 
-![Airline Performance](assets/airline_image.jpeg)
+![Airline Performance](SUPPLEMENTAL_MATERIALS/airline_image.jpeg)
 
 ## Hook and Rubric Documents
 
@@ -15,9 +15,7 @@ The hook document outlining the case study is the file labeled **HOOK_DOCUMENT.p
 CS3-DS4002/
 ├── README.md                              
 ├── CS3_RUBRIC.pdf                      
-├── CS3_AirlineScores_hook.pdf
-├── assets/
-│   └── airline_image.jpeg                             
+├── CS3_AirlineScores_hook.pdf                             
 ├── DATA/
 │   ├── airline_delays_2022_2024.csv
 │   ├── Annual Airline On-Time Rankings 2003-2024.xlsx      
@@ -27,6 +25,7 @@ CS3-DS4002/
 │   ├── starter_analysis.ipynb            
 │   └── helper_functions.py               
 └── SUPPLEMENTAL_MATERIALS/
+    ├── airline_image.jpeg
     ├── USAFacts_Airline_Performance.pdf   
     ├── BTS_Annual_Rankings_2022_2024.pdf  
     └── REFERENCES.md                      
