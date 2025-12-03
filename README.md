@@ -1,6 +1,8 @@
 # Airline Scorecard: Which US Airline Is Most Likely to Make You Late?
 ### A DS4002 Case Study by David Nu Nu Marip
 
+![Airline Performance](assets/airline_image.jpeg)
+
 ## Hook and Rubric Documents
 
 The hook document outlining the case study is the file labeled **HOOK_DOCUMENT.pdf**. The rubric **RUBRIC.pdf** outlines the formatting, submission requirements, and final deliverables for this assignment. Both documents should be referenced continuously throughout your completion of the case study to guarantee success on the assignment.
@@ -13,10 +15,14 @@ The hook document outlining the case study is the file labeled **HOOK_DOCUMENT.p
 CS3-DS4002/
 ├── README.md                              
 ├── CS3_RUBRIC.pdf                      
-├── CS3_AirlineScores_hook.pdf                             
+├── CS3_AirlineScores_hook.pdf
+├── assets/
+│   └── airline_image.jpeg                             
 ├── DATA/
-│   ├── airline_delays_2022_2024.csv      
-│   └── DATA_DICTIONARY.md                
+│   ├── airline_delays_2022_2024.csv
+│   ├── Annual Airline On-Time Rankings 2003-2024.xlsx      
+│   ├── DATA_DICTIONARY.md
+│   └── DATA_PREPARATION.md                
 ├── SCRIPTS/
 │   ├── starter_analysis.ipynb            
 │   └── helper_functions.py               
