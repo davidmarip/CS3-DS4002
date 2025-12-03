@@ -3,9 +3,9 @@
 
 ![Airline Performance](SUPPLEMENTAL_MATERIALS/airline_image.jpeg)
 
-## Hook and Rubric Documents
+## Overview
 
-The hook document outlining the case study is the file labeled **HOOK_DOCUMENT.pdf**. The rubric **RUBRIC.pdf** outlines the formatting, submission requirements, and final deliverables for this assignment. Both documents should be referenced continuously throughout your completion of the case study to guarantee success on the assignment.
+This case study challenges you to analyze airline delay patterns using real-world data from the Bureau of Transportation Statistics. You'll determine which U.S. airline is most likely to make passengers late and validate your findings against official government benchmarks.
 
 ---
 
@@ -13,31 +13,30 @@ The hook document outlining the case study is the file labeled **HOOK_DOCUMENT.p
 
 ```
 CS3-DS4002/
-├── README.md                              
-├── CS3_RUBRIC.pdf                      
-├── CS3_AirlineScores_hook.pdf                             
+├── README.md
+├── LICENSE                             
 ├── DATA/
-│   ├── airline_delays_2022_2024.csv
-│   ├── Annual Airline On-Time Rankings 2003-2024.xlsx      
+│   ├── Annual Airline On-Time Rankings 2003-2024.xlsx
 │   ├── DATA_DICTIONARY.md
-│   └── DATA_PREPARATION.md                
+│   └── DATA_PREPARATION.md
 ├── SCRIPTS/
-│   ├── starter_analysis.ipynb            
-│   └── helper_functions.py               
+│   ├── helper_functions.py
+│   └── starter_analysis.ipynb
 └── SUPPLEMENTAL_MATERIALS/
     ├── airline_image.jpeg
-    ├── USAFacts_Airline_Performance.pdf   
-    ├── BTS_Annual_Rankings_2022_2024.pdf  
-    └── REFERENCES.md                      
+    └── USAFacts.pdf
 ```
 
 ---
 
 ## Data
 
-The airline delay dataset is obtained directly from the [Bureau of Transportation Statistics (BTS)](https://www.transtats.bts.gov/Tables.asp?QO_VQ=EFD). The DATA folder contains the data dictionary explaining all variables and preparation instructions. The dataset includes 2022-2024 domestic flight records from 9 major US carriers.
+The airline delay dataset should be obtained directly from the [Bureau of Transportation Statistics (BTS)](https://www.transtats.bts.gov/Tables.asp?QO_VQ=EFD). The `DATA/` folder contains:
+- **DATA_DICTIONARY.md** - Complete variable definitions
+- **DATA_PREPARATION.md** - Step-by-step instructions for downloading and filtering BTS data
+- **Annual Airline On-Time Rankings 2003-2024.xlsx** - Official BTS rankings for validation
 
-Additionally, you will use the [BTS Annual Rankings](https://www.bts.gov/topics/airlines-and-airports/annual-airline-time-rankings-2003-2024) to validate your computed airline delay rates against official government benchmarks.
+The dataset should include 2022-2024 domestic flight records from 9 major US carriers. Follow the preparation instructions to create your analysis dataset.
 
 ---
 
@@ -49,4 +48,4 @@ Additionally, you will use the [BTS Annual Rankings](https://www.bts.gov/topics/
 
 **Bureau of Transportation Statistics.** (2024). Airline Service Quality Performance 234 (On-Time Performance). [https://www.bts.gov/topics/airline-time-tables](https://www.bts.gov/topics/airline-time-tables)
 
-For a complete list of references and supplemental materials, see `SUPPLEMENTAL_MATERIALS/REFERENCES.md`.
+Additional reference materials are available in the `SUPPLEMENTAL_MATERIALS/` folder.
