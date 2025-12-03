@@ -12,8 +12,8 @@ The hook document outlining the case study is the file labeled **HOOK_DOCUMENT.p
 ```
 CS3-DS4002/
 ├── README.md                              
-├── HOOK_DOCUMENT.pdf                      
-├── RUBRIC.pdf                             
+├── CS3_RUBRIC.pdf                      
+├── CS3_AirlineScores_hook.pdf                             
 ├── DATA/
 │   ├── airline_delays_2022_2024.csv      
 │   └── DATA_DICTIONARY.md                
