@@ -195,9 +195,9 @@ check_data_quality(df)
 ## Need Help?
 
 - Check `DATA_DICTIONARY.md` for column definitions
-- Review `REFERENCES.md` for BTS documentation links
+- Review the README.md for BTS documentation links
 - Consult the `helper_functions.py` module for data loading utilities
 
 ---
 
-**Once your data is ready, proceed to `starter_analysis.ipynb` to begin the analysis!** 🚀
+**Once your data is ready, proceed to `starter_analysis.ipynb` to begin the analysis!**

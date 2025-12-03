@@ -205,4 +205,4 @@ If you're unsure about a variable:
 2. Look at the supplemental materials (`SUPPLEMENTAL_MATERIALS/REFERENCES.md`)
 3. Inspect a few rows using `df.head()` or `df.sample(10)`
 
-**Remember:** The most important column for this case study is `ArrDelay15` - this tells you whether each flight made someone late! 🕐✈️
+**Remember:** The most important column for this case study is `ArrDelay15` - this tells you whether each flight made someone late!
