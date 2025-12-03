@@ -39,12 +39,16 @@ def load_and_validate_data(filepath):
     # Load data
     df = pd.read_csv(filepath)
     
-    # Check for required columns
-    required_cols = ['CarrierName', 'ArrDelay15', 'Cancelled', 'ArrDelayMinutes']
+    # Check for essential columns (ArrDelayMinutes is optional)
+    required_cols = ['CarrierName', 'ArrDelay15', 'Cancelled']
     missing_cols = [col for col in required_cols if col not in df.columns]
     
     if missing_cols:
         raise ValueError(f"Missing required columns: {missing_cols}")
+    
+    # Warn if ArrDelayMinutes is missing
+    if 'ArrDelayMinutes' not in df.columns:
+        print("⚠️  Warning: ArrDelayMinutes column not found. Delay magnitude analysis will be limited.")
     
     print(f"✅ Data loaded successfully!")
     print(f"   Total records: {len(df):,}")
@@ -141,6 +145,11 @@ def compute_average_delay(df, group_by='CarrierName', delayed_only=True):
     pd.DataFrame
         Aggregated metrics with average delay by group
     """
+    # Check if ArrDelayMinutes exists
+    if 'ArrDelayMinutes' not in df.columns:
+        print("⚠️  ArrDelayMinutes column not found. Returning empty metrics.")
+        return pd.DataFrame({group_by: [], 'avg_delay_minutes': []})
+    
     # Filter to delayed flights if requested
     if delayed_only:
         df = df[(df['ArrDelay15'] == 1) & (df['Cancelled'] == 0)].copy()
@@ -186,10 +195,12 @@ def create_scorecard(df):
         on='CarrierName'
     )
     
-    scorecard = scorecard.merge(
-        avg_delay_metrics[['CarrierName', 'avg_delay_minutes']], 
-        on='CarrierName'
-    )
+    # Only merge avg_delay if the data exists
+    if len(avg_delay_metrics) > 0 and 'avg_delay_minutes' in avg_delay_metrics.columns:
+        scorecard = scorecard.merge(
+            avg_delay_metrics[['CarrierName', 'avg_delay_minutes']], 
+            on='CarrierName'
+        )
     
     # Round for readability
     scorecard['delay_rate_pct'] = scorecard['delay_rate_pct'].round(2)
