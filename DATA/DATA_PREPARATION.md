@@ -62,7 +62,7 @@ df_filtered = df_filtered[df_filtered['Reporting_Airline'].isin(
 if 'Diverted' in df_filtered.columns:
     df_filtered = df_filtered[df_filtered['Diverted'] == 0].copy()
 
-# Create carrier name column from code
+# Standardize column names for consistency
 carrier_mapping = {
     'AS': 'Alaska Airlines Inc.',
     'AA': 'American Airlines Inc.',
@@ -78,15 +78,21 @@ carrier_mapping = {
 df_filtered['CarrierName'] = df_filtered['Reporting_Airline'].map(carrier_mapping)
 df_filtered['Carrier'] = df_filtered['Reporting_Airline']
 
-# Create ArrDelay15 if not present (BTS provides ArrDel15)
+# Standardize delay columns (BTS uses ArrDel15, we standardize to ArrDelay15)
 if 'ArrDel15' in df_filtered.columns:
     df_filtered['ArrDelay15'] = df_filtered['ArrDel15']
 elif 'ArrDelayMinutes' in df_filtered.columns:
     df_filtered['ArrDelay15'] = (df_filtered['ArrDelayMinutes'] >= 15).astype(int)
+else:
+    raise ValueError("Cannot find arrival delay column (ArrDel15 or ArrDelayMinutes)")
 
-# Ensure Cancelled column exists
+# Standardize other key columns
 if 'Cancelled' not in df_filtered.columns:
     df_filtered['Cancelled'] = 0
+
+# Ensure ArrDelayMinutes exists for detailed analysis
+if 'ArrDelayMinutes' not in df_filtered.columns and 'ArrDelay' in df_filtered.columns:
+    df_filtered['ArrDelayMinutes'] = df_filtered['ArrDelay'].clip(lower=0)
 
 # Save filtered dataset
 df_filtered.to_csv('../DATA/airline_delays_2022_2024.csv', index=False)
