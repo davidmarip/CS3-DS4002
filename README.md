@@ -1,5 +1,5 @@
 # Which US Airline Is Most Likely to Make You Late?
-### A DS4002 Case Study by David Marip
+### A DS4002 Case Study by David Nu Nu Marip
 
 ## Hook and Rubric Documents
 

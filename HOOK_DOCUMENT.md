@@ -316,7 +316,7 @@ You have 18 million flight records from 2022-2024. You have the BTS 15-minute de
 
 ### About This Case Study
 
-**Created by:** David Marip, University of Virginia  
+**Created by:** David Nu Nu Marip, University of Virginia  
 **Course:** DS4002 (Data Science Project Course)  
 **Data Source:** U.S. Bureau of Transportation Statistics (BTS), 2022-2024  
 **Target Audience:** 2nd-year undergraduate students with basic data science skills  

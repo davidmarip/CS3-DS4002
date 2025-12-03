@@ -5,7 +5,7 @@ Helper Functions for Airline Delay Analysis
 This module provides utility functions to assist students with the 
 airline delay scorecard case study.
 
-Author: David Marip, UVA DS4002
+Author: David Nu Nu Marip, UVA DS4002
 Date: December 2025
 """
 
