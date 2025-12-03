@@ -2,32 +2,47 @@
 
 ## Overview
 
-This document explains how to obtain and prepare the airline delay dataset for the case study.
+This document explains how to obtain and prepare the airline delay dataset for the case study directly from the Bureau of Transportation Statistics (BTS).
 
 ---
 
-## Option 1: Download from Kaggle (Recommended)
+## Option 1: Download Directly from BTS (Recommended)
 
-### Step 1: Get the Dataset
+### Step 1: Access BTS Data
 
-1. **Go to Kaggle:**
-   - URL: https://www.kaggle.com/datasets/daryaheyko/airline-on-time-statistics-and-delay-causes-bts
-   - Title: "Airline On-Time Statistics and Delay Causes (BTS)"
+1. **Go to BTS website:**
+   - URL: https://www.transtats.bts.gov/Tables.asp?QO_VQ=EFD
 
-2. **Download the data:**
-   - Click "Download" (requires free Kaggle account)
-   - File size: ~2-4 GB (compressed)
-   - Contains: Multiple years of BTS flight data
+2. **Navigate to On-Time Performance Data:**
+   - Select "Marketing Carrier On-Time Performance (Beginning January 2018)"
+   - Choose monthly data for 2022, 2023, 2024
 
-### Step 2: Filter to 2022-2024 Data
+3. **Download monthly files:**
+   - Download CSV files for each month (36 files total: Jan 2022 - Dec 2024)
+   - Each file is approximately 50-150 MB
+   - Save all files to a single directory (e.g., `bts_monthly/`)
 
-Use the provided Python script to filter the data:
+### Step 2: Combine and Filter
 
 ```python
 import pandas as pd
+import glob
+import os
 
-# Load the full Kaggle dataset
-df_full = pd.read_csv('path/to/kaggle_bts_data.csv')
+# Read all monthly files from the BTS download directory
+all_files = glob.glob('path/to/bts_monthly/*.csv')
+df_list = []
+
+print(f"Found {len(all_files)} monthly files to process...")
+
+for file in all_files:
+    print(f"Loading {os.path.basename(file)}...")
+    df_month = pd.read_csv(file)
+    df_list.append(df_month)
+
+# Combine all months
+df_full = pd.concat(df_list, ignore_index=True)
+print(f"Combined dataset: {len(df_full):,} records")
 
 # Filter to years 2022-2024
 df_filtered = df_full[df_full['Year'].isin([2022, 2023, 2024])].copy()
@@ -39,62 +54,51 @@ major_carriers = ['Alaska Airlines Inc.', 'American Airlines Inc.',
                   'Southwest Airlines Co.', 'Spirit Air Lines',
                   'United Air Lines Inc.']
 
-df_filtered = df_filtered[df_filtered['CarrierName'].isin(major_carriers)].copy()
+df_filtered = df_filtered[df_filtered['Reporting_Airline'].isin(
+    ['AS', 'AA', 'DL', 'F9', 'HA', 'B6', 'WN', 'NK', 'UA']
+)].copy()
 
 # Exclude diverted flights
-df_filtered = df_filtered[df_filtered['Diverted'] == 0].copy()
+if 'Diverted' in df_filtered.columns:
+    df_filtered = df_filtered[df_filtered['Diverted'] == 0].copy()
 
-# Create ArrDelay15 if not present
-if 'ArrDelay15' not in df_filtered.columns:
+# Create carrier name column from code
+carrier_mapping = {
+    'AS': 'Alaska Airlines Inc.',
+    'AA': 'American Airlines Inc.',
+    'DL': 'Delta Air Lines Inc.',
+    'F9': 'Frontier Airlines Inc.',
+    'HA': 'Hawaiian Airlines Inc.',
+    'B6': 'JetBlue Airways',
+    'WN': 'Southwest Airlines Co.',
+    'NK': 'Spirit Air Lines',
+    'UA': 'United Air Lines Inc.'
+}
+
+df_filtered['CarrierName'] = df_filtered['Reporting_Airline'].map(carrier_mapping)
+df_filtered['Carrier'] = df_filtered['Reporting_Airline']
+
+# Create ArrDelay15 if not present (BTS provides ArrDel15)
+if 'ArrDel15' in df_filtered.columns:
+    df_filtered['ArrDelay15'] = df_filtered['ArrDel15']
+elif 'ArrDelayMinutes' in df_filtered.columns:
     df_filtered['ArrDelay15'] = (df_filtered['ArrDelayMinutes'] >= 15).astype(int)
+
+# Ensure Cancelled column exists
+if 'Cancelled' not in df_filtered.columns:
+    df_filtered['Cancelled'] = 0
 
 # Save filtered dataset
 df_filtered.to_csv('../DATA/airline_delays_2022_2024.csv', index=False)
 
-print(f"Filtered dataset saved: {len(df_filtered):,} records")
+print(f"\n✅ Filtered dataset saved: {len(df_filtered):,} records")
+print(f"Airlines: {df_filtered['CarrierName'].nunique()}")
+print(f"Years: {sorted(df_filtered['Year'].unique())}")
 ```
 
 ---
 
-## Option 2: Download Directly from BTS
-
-### Step 1: Access BTS Data
-
-1. **Go to BTS website:**
-   - URL: https://www.transtats.bts.gov/Tables.asp?QO_VQ=EFD
-
-2. **Navigate to On-Time Performance Data:**
-   - Select "Marketing Carrier On-Time Performance"
-   - Choose monthly data for 2022, 2023, 2024
-
-3. **Download monthly files:**
-   - Download CSV files for each month (36 files total)
-   - Each file is ~50-150 MB
-
-### Step 2: Combine and Filter
-
-```python
-import pandas as pd
-import glob
-
-# Read all monthly files
-all_files = glob.glob('path/to/bts_monthly/*.csv')
-df_list = []
-
-for file in all_files:
-    df_month = pd.read_csv(file)
-    df_list.append(df_month)
-
-# Combine all months
-df_full = pd.concat(df_list, ignore_index=True)
-
-# Apply filters (same as Option 1)
-# ... [use filtering code from above]
-```
-
----
-
-## Option 3: Use a Sample (For Testing)
+## Option 2: Use a Sample (For Testing)
 
 If you want to work with a smaller sample first:
 
@@ -170,8 +174,8 @@ check_data_quality(df)
 
 ## Troubleshooting
 
-**Problem:** Kaggle dataset is too large to download
-- **Solution:** Download month-by-month from BTS or use a sample
+**Problem:** BTS column names differ from expected
+- **Solution:** BTS uses `ArrDel15` instead of `ArrDelay15`, and `Reporting_Airline` instead of `Carrier`. The filtering script handles these mappings.
 
 **Problem:** `ArrDelay15` column is missing
 - **Solution:** Create it: `df['ArrDelay15'] = (df['ArrDelayMinutes'] >= 15).astype(int)`

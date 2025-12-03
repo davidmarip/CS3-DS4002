@@ -30,7 +30,7 @@ CS3-DS4002/
 
 ## Data
 
-The airline delay dataset can be obtained from the [Bureau of Transportation Statistics (BTS)](https://www.bts.gov/topics/airline-time-tables) or the [Kaggle BTS On-Time Performance dataset](https://www.kaggle.com/datasets/daryaheyko/airline-on-time-statistics-and-delay-causes-bts). The DATA folder contains the data dictionary explaining all variables. The dataset includes 2022-2024 domestic flight records from 9 major US carriers.
+The airline delay dataset is obtained directly from the [Bureau of Transportation Statistics (BTS)](https://www.transtats.bts.gov/Tables.asp?QO_VQ=EFD). The DATA folder contains the data dictionary explaining all variables and preparation instructions. The dataset includes 2022-2024 domestic flight records from 9 major US carriers.
 
 Additionally, you will use the [BTS Annual Rankings](https://www.bts.gov/topics/airlines-and-airports/annual-airline-time-rankings-2003-2024) to validate your computed airline delay rates against official government benchmarks.
 
