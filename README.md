@@ -1,4 +1,4 @@
-# Which US Airline Is Most Likely to Make You Late?
+# Airline Scorecard: Which US Airline Is Most Likely to Make You Late?
 ### A DS4002 Case Study by David Marip
 
 ## Hook and Rubric Documents
