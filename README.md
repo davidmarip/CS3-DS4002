@@ -26,7 +26,7 @@ CS3-DS4002/
 │   └── starter_analysis.ipynb
 └── SUPPLEMENTAL_MATERIALS/
     ├── airline_image.jpeg
-    └── USAFacts.html
+    └── USAFacts.pdf
 ```
 
 ---
