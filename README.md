@@ -1,5 +1,5 @@
 # Airline Scorecard: Which US Airline Is Most Likely to Make You Late?
-### A DS4002 Case Study by David Nu Nu Marip
+### DS4002 Case Study by David Nu Nu Marip
 
 ![Airline Performance](SUPPLEMENTAL_MATERIALS/airline_image.jpeg)
 
@@ -14,7 +14,9 @@ This case study challenges you to analyze airline delay patterns using real-worl
 ```
 CS3-DS4002/
 ├── README.md
-├── LICENSE                             
+├── LICENSE
+├── CS3-Airline-Scorecard-Hook.pdf
+├── CS3Rubric.pdf
 ├── DATA/
 │   ├── Annual Airline On-Time Rankings 2003-2024.xlsx
 │   ├── DATA_DICTIONARY.md
@@ -24,7 +26,7 @@ CS3-DS4002/
 │   └── starter_analysis.ipynb
 └── SUPPLEMENTAL_MATERIALS/
     ├── airline_image.jpeg
-    └── USAFacts.pdf
+    └── USAFacts.html
 ```
 
 ---
